@@ -24,22 +24,13 @@ Pod::Spec.new do |s|
   3.	Взаимодействие пользовательского приложения, авторизации в ЕСИА и МП ЕБС для биометрической верификации.
                        DESC
 
-  s.homepage         = 'https://https://github.com/EBSBIO/IOS'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
+  s.homepage         = 'https://github.com/EBSBIO/EBSSDK'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'sergey.rybchinsky@waveaccess.ru' => 'sergey.rybchinsky@waveaccess.ru' }
-  s.source           = { :git => 'https://github.com/EBSBIO/IOS.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.source           = { :git => 'https://github.com/EBSBIO/EBSSDK.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '10.0'
   s.swift_version = '5.0'
-
   s.source_files = 'EbsSDK/*.swift'
-
-  # s.resource_bundles = {
-  #   'EbsSDK' => ['EbsSDK/Assets/*.png']
-  # }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'UIKit'
 end
