@@ -1,0 +1,67 @@
+disabled_rules: # rule identifiers to exclude from running
+  - legacy_constructor
+  - identifier_name
+  - legacy_cggeometry_functions
+  - legacy_constant
+  - todo
+  - trailing_newline
+  - empty_count
+  - force_cast
+  - type_name
+  - function_body_length
+  - cyclomatic_complexity
+  - type_body_length
+  - function_parameter_count
+  - force_try
+  - control_statement
+  - trailing_whitespace
+  - leading_whitespace
+  - operator_whitespace
+  - file_length
+  - mark
+  - weak_delegate
+  - discarded_notification_center_observer
+opt_in_rules: # some rules are only opt-in
+  - closing_brace
+  - opening_brace
+  - return_arrow_whitespace
+  - trailing_semicolon
+  # Find all the available rules by running:
+  # swiftlint rules
+included: # paths to include during linting. `--path` is ignored if present.
+  - Ebs
+  - EbsCommon
+  - EbsSDK
+  - App-demo
+excluded: # paths to ignore during linting. Takes precedence over `included`.
+  - fastlane
+  - Pods
+  - Templates
+  - DevPods
+
+# configurable rules can be customized from this configuration file
+# binary rules can set their severity level
+trailing_semicolon: error
+empty_count: error
+closing_brace: error
+opening_brace: error
+return_arrow_whitespace: error
+comma: error
+statement_position:
+  statement_mode: uncuddled_else
+
+nesting:
+  type_level:
+    warning: 3
+    error: 4
+
+line_length: 250
+
+reporter: xcode
+
+large_tuple:
+  warning: 3
+  error: 4
+line_length:
+  warning: 350
+  error: 400
