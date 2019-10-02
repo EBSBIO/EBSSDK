@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'EbsSDK'
-  s.version          = '1.0.0'
-  s.summary          = 'SDK для взаимодействия с МП ЕБС.'
+  s.version          = '1.0.1'
+  s.summary          = 'SDK для взаимодействия с МП Биометрия.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -26,7 +26,7 @@ Pod::Spec.new do |s|
 
   s.homepage         = 'https://github.com/EBSBIO/EBSSDK'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'sergey.rybchinsky@waveaccess.ru' => 'sergey.rybchinsky@waveaccess.ru' }
+  s.author           = { 'WaveAccess' => 'sergey.rybchinsky@waveaccess.ru' }
   s.source           = { :git => 'https://github.com/EBSBIO/EBSSDK.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '10.0'

@@ -49,7 +49,7 @@ extension EbsSDKClient {
 		static let ebsAppKey = "com.waveaccess.Ebs"
 
 		/// Url to EBS's app store page
-		static let appStoreUrl = "itms-apps://itunes.apple.com/app/id1024941703"
+		static let appStoreUrl = "itms-apps://itunes.apple.com/app/id1436489633"
 
 		/// EBS BundleURLSchemes
 		static let ebsBundleURLSchemes = "ebs://"
