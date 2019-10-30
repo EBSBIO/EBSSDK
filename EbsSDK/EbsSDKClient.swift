@@ -46,7 +46,7 @@ extension EbsSDKClient {
 	private struct Constants {
 
 		/// The EBS application identifier is retrieved using UIApplicationOpenURLOptionsKey.sourceApplication.
-		static let ebsAppKey = "ru.rostelecom.ebs"
+		static let ebsAppKey = "com.waveaccess.Ebs"
 
 		/// Url to EBS's app store page
 		static let appStoreUrl = "itms-apps://itunes.apple.com/app/id1436489633"
