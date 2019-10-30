@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'EbsSDK'
-  s.version          = '1.0.3'
+  s.version          = '1.0.2'
   s.summary          = 'SDK для взаимодействия с МП Биометрия.'
 
 # This description is used to generate tags and improve search results.
