@@ -177,12 +177,8 @@ public class EbsSDKClient {
 
 	/// Processes url with receive from EBS. Should be invoked in AppDelegate.application(_ app:, open:, options:)
 	///  - Parameter openUrl: The URL resource to open
-	///  - Parameter sourceApplication: A dictionary of URL handling options
-	public func process(openUrl: URL, from sourceApplication: String) {
-		guard sourceApplication == Constants.ebsAppKey else {
-			return
-		}
-
+	///  - Parameter options: A dictionary of URL handling options.
+	public func process(openUrl: URL, options: [UIApplication.OpenURLOptionsKey: Any]) {
 		switch authEsiaState {
 		case .auth(let completion):
 			guard let urlComponents = URLComponents(string: openUrl.absoluteString), let queryItems = urlComponents.queryItems else {
