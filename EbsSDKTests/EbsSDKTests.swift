@@ -60,8 +60,8 @@ class EbsSDKTests: XCTestCase {
 
     private let appSchemeKey = "appScheme"
     private let testAppScheme = "com.test.app"
-    private let ebsAppSource = "com.waveaccess.Ebs"
-    private let appStoreUrl = "itms-apps://itunes.apple.com/app/id1024941703"
+	private let processOptions: [UIApplication.OpenURLOptionsKey: Any] = [:]
+    private let appStoreUrl = "itms-apps://itunes.apple.com/app/id1436489633"
     private let cancelKey = "cancel"
 
     private func getUrlForProcess(items: [URLQueryItem]) -> URL {
@@ -120,7 +120,7 @@ class EbsSDKTests: XCTestCase {
                     URLQueryItem(name: EsiaToken.CodingKeys.code.rawValue, value: "token.code"),
                     URLQueryItem(name: EsiaToken.CodingKeys.state.rawValue, value: "token.state")
                 ])
-                self.sdk.process(openUrl: url, from: self.ebsAppSource)
+                self.sdk.process(openUrl: url, options: self.processOptions)
 
             case 2:
                 let url = self.getUrlForProcess(items: [
@@ -128,7 +128,7 @@ class EbsSDKTests: XCTestCase {
                     URLQueryItem(name: EbsToken.CodingKeys.expired.rawValue, value: "token.expired")
                 ])
                 expectationOpenEbs.fulfill()
-                self.sdk.process(openUrl: url, from: self.ebsAppSource)
+                self.sdk.process(openUrl: url, options: self.processOptions)
 
             default: break
             }
@@ -150,7 +150,7 @@ class EbsSDKTests: XCTestCase {
                     URLQueryItem(name: EsiaToken.CodingKeys.code.rawValue, value: "token.code"),
                     URLQueryItem(name: EsiaToken.CodingKeys.state.rawValue, value: "token.state")
                 ])
-                self.sdk.process(openUrl: url, from: self.ebsAppSource)
+                self.sdk.process(openUrl: url, options: self.processOptions)
 
             case 2:
                 let url = self.getUrlForProcess(items: [
@@ -158,14 +158,14 @@ class EbsSDKTests: XCTestCase {
                     URLQueryItem(name: EbsToken.CodingKeys.expired.rawValue, value: "token.expired")
                 ])
                 expectationOpenEbs.fulfill()
-                self.sdk.process(openUrl: url, from: self.ebsAppSource)
+                self.sdk.process(openUrl: url, options: self.processOptions)
 
             case 3:
                 expectationOpenEbs.fulfill()
                 let url = self.getUrlForProcess(items: [
                     URLQueryItem(name: self.cancelKey, value: self.cancelKey)
                 ])
-                self.sdk.process(openUrl: url, from: self.ebsAppSource)
+                self.sdk.process(openUrl: url, options: self.processOptions)
 
             default: break
             }
@@ -187,7 +187,7 @@ class EbsSDKTests: XCTestCase {
                     URLQueryItem(name: EsiaToken.CodingKeys.code.rawValue, value: "token.code"),
                     URLQueryItem(name: EsiaToken.CodingKeys.state.rawValue, value: "token.state")
                 ])
-                self.sdk.process(openUrl: url, from: self.ebsAppSource)
+                self.sdk.process(openUrl: url, options: self.processOptions)
 
             case 2:
                 let url = self.getUrlForProcess(items: [
@@ -195,12 +195,12 @@ class EbsSDKTests: XCTestCase {
                     URLQueryItem(name: EbsToken.CodingKeys.expired.rawValue, value: "token.expired")
                 ])
                 expectationOpenEbs.fulfill()
-                self.sdk.process(openUrl: url, from: self.ebsAppSource)
+                self.sdk.process(openUrl: url, options: self.processOptions)
 
             case 3:
                 expectationOpenEbs.fulfill()
                 let url = self.getUrlForProcess(items: [])
-                self.sdk.process(openUrl: url, from: self.ebsAppSource)
+                self.sdk.process(openUrl: url, options: self.processOptions)
 
             default: break
             }
@@ -212,7 +212,6 @@ class EbsSDKTests: XCTestCase {
         let expectationVerificationResult = self.expectation(description: "Waiting requestEBSVerification result. Expected .sdkIsNotConfigured error")
         expectationVerificationResult.expectedFulfillmentCount = 1
 
-        var urlDidOpenCount = 0
         mockApp.urlDidOpen = nil
         sdk.set(scheme: testAppScheme, title: "appTitle", infoSystem: "infoSystem", presenting: nil)
         sdk.requestEsiaSession(urlString: "esiaLoginUrl") { result in
@@ -232,7 +231,6 @@ class EbsSDKTests: XCTestCase {
         let expectationVerificationResult = self.expectation(description: "Waiting requestEBSVerification result. Expected .sdkIsNotConfigured error")
         expectationVerificationResult.expectedFulfillmentCount = 1
 
-        var urlDidOpenCount = 0
         mockApp.urlDidOpen = nil
         sdk.requestEsiaSession(urlString: "esiaLoginUrl") { result in
             switch result {
@@ -265,12 +263,12 @@ class EbsSDKTests: XCTestCase {
                     URLQueryItem(name: EsiaToken.CodingKeys.code.rawValue, value: "token.code"),
                     URLQueryItem(name: EsiaToken.CodingKeys.state.rawValue, value: "token.state")
                 ])
-                self.sdk.process(openUrl: url, from: self.ebsAppSource)
+                self.sdk.process(openUrl: url, options: self.processOptions)
 
             case 2:
                 let url = self.getUrlForProcess(items: [URLQueryItem(name: self.cancelKey, value: self.cancelKey)])
                 expectationOpenEbs.fulfill()
-                self.sdk.process(openUrl: url, from: self.ebsAppSource)
+                self.sdk.process(openUrl: url, options: self.processOptions)
 
             default: break
             }
@@ -281,7 +279,7 @@ class EbsSDKTests: XCTestCase {
             case .failure, .ebsNotInstalled, .sdkIsNotConfigured, .cancel:
                 XCTAssertThrowsError("(requestEsiaSession) Unexpected result: \(result)")
 
-            case .success(let esiaResult):
+            case .success:
                 self.sdk.requestAuthorization(sessionId: "sessionID") { result in
                     switch result {
                     case .cancel:
@@ -316,12 +314,12 @@ class EbsSDKTests: XCTestCase {
                     URLQueryItem(name: EsiaToken.CodingKeys.code.rawValue, value: "token.code"),
                     URLQueryItem(name: EsiaToken.CodingKeys.state.rawValue, value: "token.state")
                 ])
-                self.sdk.process(openUrl: url, from: self.ebsAppSource)
+                self.sdk.process(openUrl: url, options: self.processOptions)
 
             case 2:
                 let url = self.getUrlForProcess(items: [])
                 expectationOpenEbs.fulfill()
-                self.sdk.process(openUrl: url, from: self.ebsAppSource)
+                self.sdk.process(openUrl: url, options: self.processOptions)
 
             default: break
             }
@@ -332,7 +330,7 @@ class EbsSDKTests: XCTestCase {
             case .failure, .ebsNotInstalled, .sdkIsNotConfigured, .cancel:
                 XCTAssertThrowsError("(requestEsiaSession) Unexpected result: \(result)")
 
-            case .success(let esiaResult):
+            case .success:
                 self.sdk.requestAuthorization(sessionId: "sessionID") { result in
                     switch result {
                     case .failure:
@@ -364,7 +362,7 @@ class EbsSDKTests: XCTestCase {
             case 1:
                 expectationOpenEbs.fulfill()
                 let url = self.getUrlForProcess(items: [URLQueryItem(name: self.cancelKey, value: self.cancelKey)])
-                self.sdk.process(openUrl: url, from: self.ebsAppSource)
+                self.sdk.process(openUrl: url, options: self.processOptions)
 
             default: break
             }
@@ -398,7 +396,7 @@ class EbsSDKTests: XCTestCase {
             case 1:
                 expectationOpenEbs.fulfill()
                 let url = self.getUrlForProcess(items: [])
-                self.sdk.process(openUrl: url, from: self.ebsAppSource)
+				self.sdk.process(openUrl: url, options: self.processOptions)
 
             default: break
             }
@@ -421,7 +419,6 @@ class EbsSDKTests: XCTestCase {
         let expectationVerificationResult = self.expectation(description: "Waiting requestEBSVerification result. Expected .sdkIsNotConfigured error")
         expectationVerificationResult.expectedFulfillmentCount = 1
 
-        var urlDidOpenCount = 0
         mockApp.urlDidOpen = urlDidOpen
 
         sdk.requestEsiaSession(urlString: "esiaLoginUrl") { result in
@@ -429,13 +426,13 @@ class EbsSDKTests: XCTestCase {
             case .failure, .ebsNotInstalled, .sdkIsNotConfigured, .cancel:
                 XCTAssertThrowsError("(requestEsiaSession) Unexpected result: \(result)")
 
-            case .success(let esiaResult):
+            case .success:
                 self.sdk.requestAuthorization(sessionId: "sessionID") { result in
                     switch result {
                     case .failure, .cancel:
                         XCTAssertThrowsError("(requestAuthorization) Unexpected result: \(result)")
 
-                    case .success(let token):
+                    case .success:
                         self.sdk.requestExtendedAuthorization(location: "ExtendedAuthorizationUrl") { result in
                            switch (result, expectedResult) {
                            case (.success, .success),
