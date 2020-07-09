@@ -131,9 +131,7 @@ public class EbsSDKClient {
 	private var authEsiaState: State = .none
 
 	// MARK: Inits
-
-	//TODO: Make it public for unit tests only
-	private init(application: UIApplicationProtocol) {
+	init(application: UIApplicationProtocol) {
 		self.application = application
 	}
 
