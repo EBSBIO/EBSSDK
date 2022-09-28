@@ -46,13 +46,13 @@ extension EbsSDKClient {
 	private struct Constants {
 
 		/// The EBS application identifier is retrieved using UIApplicationOpenURLOptionsKey.sourceApplication.
-		static let ebsAppKey = "ru.rostelecom.ebs"
+		static let ebsAppKey = "ru.rostelecom.ebs.sr"
 
 		/// Url to EBS's app store page
-		static let appStoreUrl = "itms-apps://itunes.apple.com/app/id1436489633"
+		static let appStoreUrl = "itms-apps://itunes.apple.com/app/id6443499542"
 
 		/// EBS BundleURLSchemes
-		static let ebsBundleURLSchemes = "ebs://"
+		static let ebsBundleURLSchemes = "ebsgu://"
 	}
 
 	/// Structure describes keys which are using in URL
